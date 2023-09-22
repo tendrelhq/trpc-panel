@@ -1,23 +1,21 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "module": "esnext",
-    "rootDir": "./src",
-    "moduleResolution": "node",
-    "types": ["node"],
-    "resolveJsonModule": true,
-    "outDir": "./lib",
     "esModuleInterop": true,
+    "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
-    "strict": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "outDir": "./lib",
+    "resolveJsonModule": true,
+    "rootDir": "./src",
     "skipLibCheck": true,
+    "strict": true,
+    "target": "esnext",
+    "types": ["node"]
   },
   "ts-node": {
     "esm": true
   },
-  "include": [
-    "./src/**/*"
-  ],
+  "include": ["./src/**/*"]
 }

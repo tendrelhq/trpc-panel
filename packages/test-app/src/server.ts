@@ -6,9 +6,9 @@ import * as trpcExpress from "@trpc/server/adapters/express";
 import cors from "cors";
 import { testRouter } from "./router.js";
 
-const serverUrl = process.env.SERVER_URL;
-const trpcPath = process.env.TRPC_PATH;
-const port = process.env.DEV_PORT;
+const serverUrl = process.env.SERVER_URL ?? "localhost";
+const trpcPath = process.env.TRPC_PATH ?? "trpc";
+const port = Number(process.env.DEV_PORT ?? 4000);
 // to marginally improve local development experience
 const liveReload = process.env.LIVE_RELOAD === "true";
 const simulateDelay = process.env.SIMULATE_DELAY === "true";
@@ -49,9 +49,6 @@ expressApp.use(
   })
 );
 
-console.log("Starting at url ");
-console.log(`${serverUrl}${port ? `:${port}` : ""}/${trpcPath}`);
-
 expressApp.get("/", (_req, res) => {
   res.send(
     renderTrpcPanel(testRouter, {
@@ -61,4 +58,6 @@ expressApp.get("/", (_req, res) => {
   );
 });
 
-expressApp.listen(port ? port : 4000);
+expressApp.listen(port, () => {
+  console.log(`Test App started at ${serverUrl}:${port}`);
+});

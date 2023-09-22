@@ -3,31 +3,19 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "test:panel": "yarn && npx nx test --project trpc-panel",
-    "build:panel": "yarn && npx nx build --project trpc-panel",
-    "build:test-app": "yarn && npx nx build --project test-trpc-panel",
-    "build:docs": "yarn && npx nx build --project docs",
+    "test:panel": "pnpm --filter trpc-panel test",
+    "build:panel": "pnpm --filter trpc-panel build",
+    "build:test-app": "pnpm --filter test-app build",
+    "build:docs": "cd packages/docs && pnpm build",
     "cpy:readme": "cp README.MD packages/trpc-panel/README.md",
-    "start:test-app": "node ./packages/test-app/lib/server.js",
-    "start:docs": "cd packages/docs && yarn serve"
+    "start:test-app": "pnpm --filter test-app start",
+    "start:docs": "cd packages/docs && pnpm start"
   },
   "private": true,
   "devDependencies": {
-    "@nrwl/nx-cloud": "latest",
     "@tsconfig/docusaurus": "^1.0.6",
-    "nx": "15.2.4",
     "prettier": "^2.6.2",
+    "ts-node-dev": "^2.0.0",
     "typescript": "^4.9.3"
-  },
-  "workspaces": {
-    "packages": [
-      "packages/trpc-panel",
-      "packages/test-app",
-      "packages/dev-app"
-    ],
-    "nohoist": [
-      "**/zod-to-json-schema",
-      "**/zod-to-json-schema/**"
-    ]
   }
 }
